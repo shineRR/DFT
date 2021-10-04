@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA7E2BE5270B6C7400832E69 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE4270B6C7400832E69 /* Constants.swift */; };
+		CA7E2BE7270B6C7B00832E69 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE6270B6C7B00832E69 /* Signal.swift */; };
 		CAED7A5E2709EF10004D7B02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A5D2709EF10004D7B02 /* AppDelegate.swift */; };
 		CAED7A602709EF10004D7B02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A5F2709EF10004D7B02 /* ViewController.swift */; };
 		CAED7A622709EF11004D7B02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAED7A612709EF11004D7B02 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA7E2BE4270B6C7400832E69 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CA7E2BE6270B6C7B00832E69 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		CAED7A5A2709EF10004D7B02 /* DFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAED7A5D2709EF10004D7B02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAED7A5F2709EF10004D7B02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		CAED7A702709F440004D7B02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA7E2BE6270B6C7B00832E69 /* Signal.swift */,
+				CA7E2BE4270B6C7400832E69 /* Constants.swift */,
 				CAED7A712709F44D004D7B02 /* Fourier.swift */,
 			);
 			path = Model;
@@ -189,8 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAED7A722709F44D004D7B02 /* Fourier.swift in Sources */,
+				CA7E2BE7270B6C7B00832E69 /* Signal.swift in Sources */,
 				CAED7A602709EF10004D7B02 /* ViewController.swift in Sources */,
 				CAED7A5E2709EF10004D7B02 /* AppDelegate.swift in Sources */,
+				CA7E2BE5270B6C7400832E69 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

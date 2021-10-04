@@ -93,8 +93,8 @@ class Fourier {
     static func halfReverse(in x: [Complex<Double>]) -> [Complex<Double>] {
         var output = Array.init(repeating: Complex<Double>(1.0), count: x.count)
         for i in 0..<(x.count / 2) {
-            output[x.length / 2 - 1 - i] = x[i]
-            output[x.length - 1 - i] = x[x.length / 2 + i]
+            output[x.count / 2 - 1 - i] = x[i]
+            output[x.count - 1 - i] = x[x.count / 2 + i]
         }
         return output
     }

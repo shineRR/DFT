@@ -10,7 +10,25 @@
 import Foundation
 import Numerics
 
+typealias FourierOutput = (acos: Double, asin: Double)
+
 class Fourier {
+    
+    static func dftBSUIR(j: Int, inData: [Double]) -> FourierOutput {
+        let length = inData.count
+        var acos = 0.0
+        var asin = 0.0
+        
+        for i in 0..<length {
+            let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(length)
+            acos += inData[i] * cos(angle)
+            asin += inData[i] * sin(angle)
+        }
+        
+        return (acos: acos * 2 / Double(length), asin: asin * 2 / Double(length))
+    }
+    
+    
     static func getW(for k: Int, with n: Int) -> Complex<Double> {
         guard k % n != 0 else { return  Complex<Double>(1.0) }
         let arg = -2.0 * Double.pi * Double(k) / Double(n)

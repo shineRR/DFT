@@ -10,23 +10,25 @@
 import Cocoa
 import Charts
 
+protocol ChartDelegate {
+    func drawSignal(with values: [Double], color: CGColor, label: String)
+    func compareSignals(with initValues: [Double], and restoredValues: [Double])
+}
+
 class ViewController: NSViewController {
 
     // MARK: - Outlets
     @IBOutlet private weak var lineChartView: LineChartView!
     
     // MARK: - Properties
-    private let fd = Double(ConstantSignal.nCount) / 2.0
-    private let initPhase = [Double.pi / 6, Double.pi / 4, Double.pi / 3, Double.pi / 2, 3 * Double.pi / 4, Double.pi]
-    private let initAmplitude = [1.0, 3.0, 5.0, 8.0, 10.0, 12.0, 16.0]
-    
-    private let chartColor = CGColor(red: 255/255, green: 80/255, blue: 0/255, alpha: 1)
-    private let chartRestoredColor = CGColor(red: 255/255, green: 40/255, blue: 0/255, alpha: 1)
+    private let service = FourierService()
     
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupChart()
+        self.service.delegate = self
         self.execute()
     }
     
@@ -34,87 +36,18 @@ class ViewController: NSViewController {
     private func execute() {
         
         // MARK: - DFT
-        var compexData = [Double]()
-        
-        for i in 0..<ConstantSignal.nCount {
-            let value = 10 * cos(2 * Double.pi * Double(i) / Double(ConstantSignal.nCount))
-            compexData.append(value)
-        }
-        
-        // 2
-        var testData = [FourierOutput]()
-        for j in 1...ConstantSignal.nCount {
-            testData.append(Fourier.dftBSUIR(j: j, inData: compexData))
-        }
-        
-        let amplitude = testData.getAmplitudeSpectrum()
-        let phase = testData.getPhaseSpectrum()
-        
-        let restored = restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
-        
-        // 3
-        let poly = polyharmonicSignal()
-        var test2Data = [FourierOutput]()
-        for j in 1...ConstantSignal.nCount {
-            test2Data.append(Fourier.dftBSUIR(j: j, inData: poly))
-        }
-        
-        let test = restoreSpectrumPolySignal(values: test2Data, shouldUsePhase: true)
-        
-        print(poly)
-        print(test)
-    }
-    
-    func restoreSignal(amplitudeSpectrum: [Double], phaseSpectrum: [Double]) -> [Double] {
-        let length = amplitudeSpectrum.count
-        let halfLength = (length / 2) - 1
-        var restoredSignal = [Double]()
-        
-        for i in 0..<length {
-            var temp = 0.0
-            for j in 0...halfLength {
-                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(length)
-                temp += amplitudeSpectrum[j] * cos(angle - phaseSpectrum[j])
-            }
-            restoredSignal.append(temp)
-        }
-        
-        return restoredSignal
-    }
-    
-    func polyharmonicSignal() -> [Double] {
-        let N = 128
-        var output = [Double]()
-        
-        for i in 0..<ConstantSignal.nCount {
-            var x = 0.0
-            for j in 1...30 {
-                guard let amplitude = self.initAmplitude.randomElement(),
-                      let phase = self.initPhase.randomElement() else { continue }
-                
-                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(N)
-                x += amplitude * cos(angle - phase)
-            }
-            output.append(x)
-        }
-        
-        return output
-    }
+//        let data = service.getDFT()
+//        let amplitude = data.getAmplitudeSpectrum()
+//        let phase = data.getPhaseSpectrum()
 
-    func restoreSpectrumPolySignal(values: [FourierOutput], shouldUsePhase: Bool = false) -> [Double] {
-        let halfLength = values.count / 2
-        var yValues = [Double]()
-        for (i, value) in values.enumerated() {
-            var y = hypot(value.acos, value.asin) / 2
-            for j in 1..<halfLength {
-                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(values.count)
-                let phase = shouldUsePhase ? atan2(value.asin, value.acos) : 0.0
-                y += hypot(values[j].acos, values[j].asin) * cos(angle - phase)
-            }
-            yValues.append(y)
-        }
+//        let signalData = self.service.getValues()
+//        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
         
-        return yValues
+        let signalData = self.service.polyharmonicSignal()
+        let dft = self.service.getDFT(with: signalData)
+        let restoredData = self.service.restoreSpectrumPolySignal(values: dft, shouldUsePhase: false)
+
+        self.compareSignals(with: signalData, and: restoredData)
     }
     
     private func setupChart() {
@@ -132,13 +65,11 @@ class ViewController: NSViewController {
         xAxis.drawGridLinesEnabled = false
         xAxis.drawLabelsEnabled = false
         xAxis.labelPosition = .bottom
-
-        self.lineChartView.animate(xAxisDuration: 1.5, easingOption: .linear)
+        
+        self.lineChartView.animate(xAxisDuration: 1.0, easingOption: .linear)
     }
     
-    private func setData() {
-        let set = getDataSet(color: chartColor, label: "Signal", alpha: 0.3)
-        
+    private func setData(with set: LineChartDataSet) {
         let data = LineChartData(dataSet: set)
         data.setDrawValues(false)
         self.lineChartView.data = data
@@ -150,11 +81,37 @@ class ViewController: NSViewController {
         set.drawCirclesEnabled = false
         set.drawFilledEnabled = true
         set.drawHorizontalHighlightIndicatorEnabled = false
-        set.fill = Fill(color: (NSUIColor(cgColor: chartColor) ?? .blue))
+        set.fill = Fill(color: (NSUIColor(cgColor: color) ?? .blue))
         set.fillAlpha = CGFloat(alpha)
         set.highlightColor = .clear
         set.lineWidth = 2
-        set.setColor(NSUIColor(cgColor: chartColor) ?? .blue)
+        set.setColor(NSUIColor(cgColor: color) ?? .blue)
         return set
+    }
+}
+
+extension ViewController: ChartDelegate {
+    func drawSignal(with values: [Double], color: CGColor, label: String) {
+        let set = getDataSet(color: color, label: label, alpha: 0.3)
+        for (i, value) in values.enumerated() {
+            set.append(ChartDataEntry(x: Double(i), y: value))
+        }
+        self.setData(with: set)
+    }
+    
+    func compareSignals(with initValues: [Double], and restoredValues: [Double]) {
+        func addEntries(for set: LineChartDataSet, values: [Double]) {
+            for (i, value) in values.enumerated() {
+                set.append(ChartDataEntry(x: Double(i), y: value))
+            }
+        }
+        
+        let initSet = self.getDataSet(color: ConstantSignal.chartColor, label: "Initial Signal", alpha: 0.3)
+        let restoredSet = self.getDataSet(color: ConstantSignal.chartRestoredColor, label: "Restored Signal", alpha: 0.3)
+        
+        addEntries(for: initSet, values: initValues)
+        addEntries(for: restoredSet, values: restoredValues)
+    
+        self.lineChartView.data = LineChartData(dataSets: [initSet, restoredSet])
     }
 }

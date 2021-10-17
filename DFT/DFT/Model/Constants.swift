@@ -39,7 +39,10 @@ struct ConstantSignal {
     static var duty = Float.pi
     static let doublePi = 2 * Float.pi
     static let frameCount = 512
-    static let nCount = 32
+    static let nCount = 128
+    
+    static let chartColor = CGColor(red: 255/255, green: 80/255, blue: 0/255, alpha: 1)
+    static let chartRestoredColor = CGColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
     
     static let sine = { (phase: Float) -> Float in
         return sin(phase)

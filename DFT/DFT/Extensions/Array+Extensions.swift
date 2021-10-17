@@ -11,7 +11,7 @@ import Foundation
 
 extension Array where Element == FourierOutput {
     func getAmplitudeSpectrum() -> [Double] {
-        return self.map({ hypot($0.acos, $0.asin) })
+        return self.map({ hypot($0.asin, $0.acos) })
     }
     
     func getPhaseSpectrum() -> [Double] {

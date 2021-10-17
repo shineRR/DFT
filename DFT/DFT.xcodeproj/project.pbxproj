@@ -10,6 +10,7 @@
 		078B95F94EA08F5933D23FC5 /* Pods_DFT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BBD451013DC9EFCA78B2B5 /* Pods_DFT.framework */; };
 		CA7E2BE5270B6C7400832E69 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE4270B6C7400832E69 /* Constants.swift */; };
 		CA7E2BE7270B6C7B00832E69 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE6270B6C7B00832E69 /* Signal.swift */; };
+		CABD29C5271C957000F61ADB /* FourierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABD29C4271C957000F61ADB /* FourierService.swift */; };
 		CAE9B9A6270E2CD000ABF51E /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */; };
 		CAED7A5E2709EF10004D7B02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A5D2709EF10004D7B02 /* AppDelegate.swift */; };
 		CAED7A602709EF10004D7B02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A5F2709EF10004D7B02 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 		3E636064E0C782194761697C /* Pods-DFT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFT.debug.xcconfig"; path = "Target Support Files/Pods-DFT/Pods-DFT.debug.xcconfig"; sourceTree = "<group>"; };
 		CA7E2BE4270B6C7400832E69 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA7E2BE6270B6C7B00832E69 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
+		CABD29C4271C957000F61ADB /* FourierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourierService.swift; sourceTree = "<group>"; };
 		CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		CAED7A5A2709EF10004D7B02 /* DFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAED7A5D2709EF10004D7B02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CABD29C3271C954700F61ADB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CABD29C4271C957000F61ADB /* FourierService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		CAE9B9A4270E2CC100ABF51E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 		CAED7A5C2709EF10004D7B02 /* DFT */ = {
 			isa = PBXGroup;
 			children = (
+				CABD29C3271C954700F61ADB /* Service */,
 				CAE9B9A4270E2CC100ABF51E /* Extensions */,
 				CAED7A702709F440004D7B02 /* Model */,
 				CAED7A6D2709EF20004D7B02 /* View Controllers */,
@@ -260,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAED7A722709F44D004D7B02 /* Fourier.swift in Sources */,
+				CABD29C5271C957000F61ADB /* FourierService.swift in Sources */,
 				CAE9B9A6270E2CD000ABF51E /* Array+Extensions.swift in Sources */,
 				CA7E2BE7270B6C7B00832E69 /* Signal.swift in Sources */,
 				CAED7A602709EF10004D7B02 /* ViewController.swift in Sources */,

@@ -15,6 +15,8 @@ class Fourier {
     
     static func dftBSUIR(j: Int, inData: [Double]) -> FourierOutput {
         let length = inData.count
+        let mul = 2.0 / Double(length)
+        
         var acos = 0.0
         var asin = 0.0
         
@@ -24,7 +26,7 @@ class Fourier {
             asin += inData[i] * sin(angle)
         }
         
-        return (acos: acos * 2 / Double(length), asin: asin * 2 / Double(length))
+        return (acos: acos * mul, asin: asin * mul)
     }
     
     

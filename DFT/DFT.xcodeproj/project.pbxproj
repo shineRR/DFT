@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		078B95F94EA08F5933D23FC5 /* Pods_DFT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BBD451013DC9EFCA78B2B5 /* Pods_DFT.framework */; };
 		CA7E2BE5270B6C7400832E69 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE4270B6C7400832E69 /* Constants.swift */; };
 		CA7E2BE7270B6C7B00832E69 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE6270B6C7B00832E69 /* Signal.swift */; };
 		CAE9B9A6270E2CD000ABF51E /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */; };
@@ -15,12 +16,11 @@
 		CAED7A622709EF11004D7B02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAED7A612709EF11004D7B02 /* Assets.xcassets */; };
 		CAED7A652709EF11004D7B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAED7A632709EF11004D7B02 /* Main.storyboard */; };
 		CAED7A722709F44D004D7B02 /* Fourier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A712709F44D004D7B02 /* Fourier.swift */; };
-		CAED7A772709FC8A004D7B02 /* ComplexModule in Frameworks */ = {isa = PBXBuildFile; productRef = CAED7A762709FC8A004D7B02 /* ComplexModule */; };
-		CAED7A792709FC8A004D7B02 /* Numerics in Frameworks */ = {isa = PBXBuildFile; productRef = CAED7A782709FC8A004D7B02 /* Numerics */; };
-		CAED7A7B2709FC8A004D7B02 /* RealModule in Frameworks */ = {isa = PBXBuildFile; productRef = CAED7A7A2709FC8A004D7B02 /* RealModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01BEFE04EAB415623E8799E9 /* Pods-DFT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFT.release.xcconfig"; path = "Target Support Files/Pods-DFT/Pods-DFT.release.xcconfig"; sourceTree = "<group>"; };
+		3E636064E0C782194761697C /* Pods-DFT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFT.debug.xcconfig"; path = "Target Support Files/Pods-DFT/Pods-DFT.debug.xcconfig"; sourceTree = "<group>"; };
 		CA7E2BE4270B6C7400832E69 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA7E2BE6270B6C7B00832E69 /* Signal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -31,6 +31,7 @@
 		CAED7A642709EF11004D7B02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CAED7A662709EF11004D7B02 /* DFT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DFT.entitlements; sourceTree = "<group>"; };
 		CAED7A712709F44D004D7B02 /* Fourier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fourier.swift; sourceTree = "<group>"; };
+		D9BBD451013DC9EFCA78B2B5 /* Pods_DFT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,15 +39,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAED7A792709FC8A004D7B02 /* Numerics in Frameworks */,
-				CAED7A772709FC8A004D7B02 /* ComplexModule in Frameworks */,
-				CAED7A7B2709FC8A004D7B02 /* RealModule in Frameworks */,
+				078B95F94EA08F5933D23FC5 /* Pods_DFT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4332EA5428CF96D1DB6F3159 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E636064E0C782194761697C /* Pods-DFT.debug.xcconfig */,
+				01BEFE04EAB415623E8799E9 /* Pods-DFT.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CAE9B9A4270E2CC100ABF51E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +68,8 @@
 			children = (
 				CAED7A5C2709EF10004D7B02 /* DFT */,
 				CAED7A5B2709EF10004D7B02 /* Products */,
+				4332EA5428CF96D1DB6F3159 /* Pods */,
+				EE0BA4DF610424547D8F4CFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,10 +86,10 @@
 			children = (
 				CAE9B9A4270E2CC100ABF51E /* Extensions */,
 				CAED7A702709F440004D7B02 /* Model */,
-				CAED7A6F2709EF31004D7B02 /* Resources */,
-				CAED7A6E2709EF28004D7B02 /* Supporting Files */,
 				CAED7A6D2709EF20004D7B02 /* View Controllers */,
 				CAED7A6C2709EF1A004D7B02 /* Views */,
+				CAED7A6F2709EF31004D7B02 /* Resources */,
+				CAED7A6E2709EF28004D7B02 /* Supporting Files */,
 			);
 			path = DFT;
 			sourceTree = "<group>";
@@ -127,6 +137,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EE0BA4DF610424547D8F4CFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9BBD451013DC9EFCA78B2B5 /* Pods_DFT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,20 +152,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAED7A692709EF11004D7B02 /* Build configuration list for PBXNativeTarget "DFT" */;
 			buildPhases = (
+				17AFF7CD807FF606BF6DC89C /* [CP] Check Pods Manifest.lock */,
 				CAED7A562709EF10004D7B02 /* Sources */,
 				CAED7A572709EF10004D7B02 /* Frameworks */,
 				CAED7A582709EF10004D7B02 /* Resources */,
+				C4CE34B14F49EFF704BECFA9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DFT;
-			packageProductDependencies = (
-				CAED7A762709FC8A004D7B02 /* ComplexModule */,
-				CAED7A782709FC8A004D7B02 /* Numerics */,
-				CAED7A7A2709FC8A004D7B02 /* RealModule */,
-			);
 			productName = DFT;
 			productReference = CAED7A5A2709EF10004D7B02 /* DFT.app */;
 			productType = "com.apple.product-type.application";
@@ -168,7 +183,7 @@
 				};
 			};
 			buildConfigurationList = CAED7A552709EF10004D7B02 /* Build configuration list for PBXProject "DFT" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -176,9 +191,6 @@
 				Base,
 			);
 			mainGroup = CAED7A512709EF10004D7B02;
-			packageReferences = (
-				CAED7A752709FC8A004D7B02 /* XCRemoteSwiftPackageReference "swift-numerics" */,
-			);
 			productRefGroup = CAED7A5B2709EF10004D7B02 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -199,6 +211,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17AFF7CD807FF606BF6DC89C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DFT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4CE34B14F49EFF704BECFA9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DFT/Pods-DFT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DFT/Pods-DFT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DFT/Pods-DFT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CAED7A562709EF10004D7B02 /* Sources */ = {
@@ -345,6 +399,7 @@
 		};
 		CAED7A6A2709EF11004D7B02 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E636064E0C782194761697C /* Pods-DFT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -372,6 +427,7 @@
 		};
 		CAED7A6B2709EF11004D7B02 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01BEFE04EAB415623E8799E9 /* Pods-DFT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -419,35 +475,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CAED7A752709FC8A004D7B02 /* XCRemoteSwiftPackageReference "swift-numerics" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-numerics.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CAED7A762709FC8A004D7B02 /* ComplexModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAED7A752709FC8A004D7B02 /* XCRemoteSwiftPackageReference "swift-numerics" */;
-			productName = ComplexModule;
-		};
-		CAED7A782709FC8A004D7B02 /* Numerics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAED7A752709FC8A004D7B02 /* XCRemoteSwiftPackageReference "swift-numerics" */;
-			productName = Numerics;
-		};
-		CAED7A7A2709FC8A004D7B02 /* RealModule */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CAED7A752709FC8A004D7B02 /* XCRemoteSwiftPackageReference "swift-numerics" */;
-			productName = RealModule;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CAED7A522709EF10004D7B02 /* Project object */;
 }

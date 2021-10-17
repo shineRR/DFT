@@ -8,14 +8,20 @@
 
 
 import Cocoa
-import Numerics
+import Charts
 
 class ViewController: NSViewController {
 
+    // MARK: - Outlets
+    @IBOutlet private weak var lineChartView: LineChartView!
+    
     // MARK: - Properties
     private let fd = Double(ConstantSignal.nCount) / 2.0
     private let initPhase = [Double.pi / 6, Double.pi / 4, Double.pi / 3, Double.pi / 2, 3 * Double.pi / 4, Double.pi]
     private let initAmplitude = [1.0, 3.0, 5.0, 8.0, 10.0, 12.0, 16.0]
+    
+    private let chartColor = CGColor(red: 255/255, green: 80/255, blue: 0/255, alpha: 1)
+    private let chartRestoredColor = CGColor(red: 255/255, green: 40/255, blue: 0/255, alpha: 1)
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -26,6 +32,7 @@ class ViewController: NSViewController {
     
     // MARK: - Methods
     private func execute() {
+        
         // MARK: - DFT
         var compexData = [Double]()
         
@@ -108,5 +115,46 @@ class ViewController: NSViewController {
         }
         
         return yValues
+    }
+    
+    private func setupChart() {
+        self.lineChartView.rightAxis.enabled = false
+        self.lineChartView.dragEnabled = true
+        self.lineChartView.doubleTapToZoomEnabled = false
+        
+        let yAxis =  self.lineChartView.leftAxis
+        yAxis.drawGridLinesEnabled = false
+        yAxis.labelFont = .boldSystemFont(ofSize: 12)
+        yAxis.setLabelCount(6, force: false)
+        yAxis.valueFormatter = DefaultAxisValueFormatter(decimals: 100)
+        
+        let xAxis =  self.lineChartView.xAxis
+        xAxis.drawGridLinesEnabled = false
+        xAxis.drawLabelsEnabled = false
+        xAxis.labelPosition = .bottom
+
+        self.lineChartView.animate(xAxisDuration: 1.5, easingOption: .linear)
+    }
+    
+    private func setData() {
+        let set = getDataSet(color: chartColor, label: "Signal", alpha: 0.3)
+        
+        let data = LineChartData(dataSet: set)
+        data.setDrawValues(false)
+        self.lineChartView.data = data
+    }
+    
+    private func getDataSet(color: CGColor, label: String, alpha: Double) -> LineChartDataSet {
+        let set = LineChartDataSet(label: label)
+        set.mode = .linear
+        set.drawCirclesEnabled = false
+        set.drawFilledEnabled = true
+        set.drawHorizontalHighlightIndicatorEnabled = false
+        set.fill = Fill(color: (NSUIColor(cgColor: chartColor) ?? .blue))
+        set.fillAlpha = CGFloat(alpha)
+        set.highlightColor = .clear
+        set.lineWidth = 2
+        set.setColor(NSUIColor(cgColor: chartColor) ?? .blue)
+        return set
     }
 }

@@ -35,17 +35,19 @@ class ViewController: NSViewController {
     // MARK: - Methods
     private func execute() {
         
+        let signalData = self.service.getValues()
+        
         // MARK: - DFT
-//        let data = service.getDFT()
-//        let amplitude = data.getAmplitudeSpectrum()
-//        let phase = data.getPhaseSpectrum()
-
-//        let signalData = self.service.getValues()
+//        let dft = service.getDFT(with: signalData)
+//        let amplitude = dft.getAmplitudeSpectrum()
+//        let phase = dft.getPhaseSpectrum()
 //        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
         
-        let signalData = self.service.polyharmonicSignal()
-        let dft = self.service.getDFT(with: signalData)
-        let restoredData = self.service.restoreSpectrumPolySignal(values: dft, shouldUsePhase: false)
+        // MARK: - FFT
+        let fft = self.service.getFFT(with: signalData)
+        let amplitude = fft.getAmplitudeSpectrum()
+        let phase = fft.getPhaseSpectrum()
+        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
 
         self.compareSignals(with: signalData, and: restoredData)
     }

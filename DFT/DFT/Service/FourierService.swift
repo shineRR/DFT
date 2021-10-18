@@ -31,6 +31,10 @@ final class FourierService {
         return self.data
     }
     
+    func getFFT(with inData: [Double]) -> [FourierOutput] {
+        return Fourier.fft(with: inData)
+    }
+    
     func getDFT(with inData: [Double]) -> [FourierOutput] {
         var fourierData = [FourierOutput]()
         for j in 1..<inData.count {

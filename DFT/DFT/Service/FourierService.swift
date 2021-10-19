@@ -38,7 +38,7 @@ final class FourierService {
     func getDFT(with inData: [Double]) -> [FourierOutput] {
         var fourierData = [FourierOutput]()
         for j in 0..<inData.count {
-            fourierData.append(Fourier.dftBSUIR(j: j, inData: inData))
+            fourierData.append(Fourier.dft(j: j, inData: inData))
         }
         return fourierData
     }
@@ -82,13 +82,13 @@ final class FourierService {
         let halfLength = (values.count / 2) - 1
         var yValues = [Double]()
         for (i, value) in values.enumerated() {
-            var y = 5.0// + value.hypot() / 2
+            var y = values[0].hypot()
             for j in 1..<halfLength {
-                let angle = 2.0 * Double.pi * Double(j) * Double(i + 1) / Double(values.count)
+                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(values.count)
                 let phase = shouldUsePhase ? value.atan2() : 0.0
-                y += cos(angle - phase)// * 10
+                y += values[j].hypot() * cos(angle - phase)
             }
-            yValues.append(y) //* -values[j].hypot())
+            yValues.append(y)
         }
         
         return yValues

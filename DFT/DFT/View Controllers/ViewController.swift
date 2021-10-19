@@ -36,12 +36,17 @@ class ViewController: NSViewController {
     private func execute() {
         
         let signalData = self.service.getValues()
+        let data = service.polyharmonicSignal()
         
         // MARK: - DFT
-        let dft = service.getDFT(with: signalData)
-        let amplitude = dft.getAmplitudeSpectrum()
-        let phase = dft.getPhaseSpectrum()
-        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
+//        let dft = service.getDFT(with: signalData)
+//        let amplitude = dft.getAmplitudeSpectrum()
+//        let phase = dft.getPhaseSpectrum()
+//        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
+        
+        // MARK: - Polyharmonic
+        let dft = service.getDFT(with: data)
+        let restoredData = service.restoreSpectrumPolySignal(values: dft, shouldUsePhase: false)
         
         // MARK: - FFT
 //        let fft = self.service.getFFT(with: signalData)
@@ -49,7 +54,7 @@ class ViewController: NSViewController {
 //        let phase = fft.getPhaseSpectrum()
 //        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: false)
 
-        self.compareSignals(with: signalData, and: restoredData)
+        self.compareSignals(with: data, and: restoredData)
     }
     
     private func setupChart() {

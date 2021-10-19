@@ -12,7 +12,6 @@ import Foundation
 struct FourierOutput {
     
     // MARK: - Properties
-//    var amplitude: Double
     var acos: Double
     var asin: Double
     
@@ -42,7 +41,7 @@ struct FourierOutput {
 
 class Fourier {
     
-    static func dftBSUIR(j: Int, inData: [Double]) -> FourierOutput {
+    static func dft(j: Int, inData: [Double]) -> FourierOutput {
         let length = inData.count
         let mul = 2.0 / Double(length)
         

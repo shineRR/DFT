@@ -38,16 +38,16 @@ class ViewController: NSViewController {
         let signalData = self.service.getValues()
         
         // MARK: - DFT
-//        let dft = service.getDFT(with: signalData)
-//        let amplitude = dft.getAmplitudeSpectrum()
-//        let phase = dft.getPhaseSpectrum()
-//        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
+        let dft = service.getDFT(with: signalData)
+        let amplitude = dft.getAmplitudeSpectrum()
+        let phase = dft.getPhaseSpectrum()
+        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
         
         // MARK: - FFT
-        let fft = self.service.getFFT(with: signalData)
-        let amplitude = fft.getAmplitudeSpectrum()
-        let phase = fft.getPhaseSpectrum()
-        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
+//        let fft = self.service.getFFT(with: signalData)
+//        let amplitude = fft.getAmplitudeSpectrum()
+//        let phase = fft.getPhaseSpectrum()
+//        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: false)
 
         self.compareSignals(with: signalData, and: restoredData)
     }

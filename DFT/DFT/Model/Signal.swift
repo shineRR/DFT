@@ -18,6 +18,11 @@ protocol SignalModulation {
     func incrementPhase()
 }
 
+struct PolyharmonicSignalValue {
+    var amplitude: Double
+    var value: Double
+}
+
 final class Signal: SignalModulation {
 
     // MARK: - Properties

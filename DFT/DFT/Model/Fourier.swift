@@ -10,9 +10,23 @@
 import Foundation
 
 struct FourierOutput {
+    
+    // MARK: - Properties
+//    var amplitude: Double
     var acos: Double
     var asin: Double
     
+    
+    // MARK: - Methods
+    func hypot() -> Double {
+        return Darwin.hypot(asin, acos)
+    }
+    
+    func atan2() -> Double {
+        return Darwin.atan2(asin, acos)
+    }
+    
+    // MARK: - Static
     static func + (_ lhs: FourierOutput, _ rhs: FourierOutput) -> FourierOutput {
         return FourierOutput(acos: lhs.acos + rhs.acos, asin: lhs.asin + rhs.asin)
     }
@@ -48,7 +62,7 @@ class Fourier {
         let length = inData.count
         
         guard length != 1 else { return [FourierOutput(acos: inData[0], asin: 0.0)] }
-        guard length % 2 <= 0 else { return [] }
+        guard length % 2 <= 0 else { fatalError() }
         
         let halfLength = length / 2
         

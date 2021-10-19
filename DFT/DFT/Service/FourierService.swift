@@ -37,7 +37,7 @@ final class FourierService {
     
     func getDFT(with inData: [Double]) -> [FourierOutput] {
         var fourierData = [FourierOutput]()
-        for j in 1..<inData.count {
+        for j in 0..<inData.count {
             fourierData.append(Fourier.dftBSUIR(j: j, inData: inData))
         }
         return fourierData
@@ -69,7 +69,7 @@ final class FourierService {
                 guard let amplitude = self.initAmplitude.randomElement(),
                       let phase = self.initPhase.randomElement() else { continue }
                 
-                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(ConstantSignal.frameCount)
+                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(ConstantSignal.nCount)
                 x += amplitude * cos(angle - phase)
             }
             output.append(x)
@@ -82,13 +82,13 @@ final class FourierService {
         let halfLength = (values.count / 2) - 1
         var yValues = [Double]()
         for (i, value) in values.enumerated() {
-            var y = hypot(value.acos, value.asin) / 2
+            var y = 5.0// + value.hypot() / 2
             for j in 1..<halfLength {
-                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(values.count)
-                let phase = shouldUsePhase ? atan2(value.asin, value.acos) : 0.0
-                y += hypot(values[j].acos, values[j].asin) * cos(angle - phase)
+                let angle = 2.0 * Double.pi * Double(j) * Double(i + 1) / Double(values.count)
+                let phase = shouldUsePhase ? value.atan2() : 0.0
+                y += cos(angle - phase)// * 10
             }
-            yValues.append(y)
+            yValues.append(y) //* -values[j].hypot())
         }
         
         return yValues
@@ -96,8 +96,8 @@ final class FourierService {
     
     private func signalValues() -> [Double] {
         var data = [Double]()
-        let amplitude = 15.0
-        let frequency = 7.0
+        let amplitude = 10.0
+        let frequency = 5.0
         for i in 0..<ConstantSignal.nCount {
             let angle = 2 * Double.pi * Double(i) * frequency / Double(ConstantSignal.nCount)
             let value = amplitude * cos(angle)

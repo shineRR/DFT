@@ -61,14 +61,14 @@ final class FourierService {
     }
     
     func polyharmonicSignal() -> [Double] {
+        guard let amplitude = self.initAmplitude.randomElement(),
+              let phase = self.initPhase.randomElement() else { return [] }
+        
         var output = [Double]()
         
         for i in 0..<ConstantSignal.nCount {
             var x = 0.0
             for j in 1...30 {
-                guard let amplitude = self.initAmplitude.randomElement(),
-                      let phase = self.initPhase.randomElement() else { continue }
-                
                 let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(ConstantSignal.nCount)
                 x += amplitude * cos(angle - phase)
             }
@@ -81,11 +81,11 @@ final class FourierService {
     func restoreSpectrumPolySignal(values: [FourierOutput], shouldUsePhase: Bool = false) -> [Double] {
         let halfLength = (values.count / 2) - 1
         var yValues = [Double]()
-        for (i, value) in values.enumerated() {
-            var y = values[0].hypot()
-            for j in 1..<halfLength {
+        for (i, _) in values.enumerated() {
+            var y = values[0].hypot() / 2
+            for j in 1...halfLength {
                 let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(values.count)
-                let phase = shouldUsePhase ? value.atan2() : 0.0
+                let phase = shouldUsePhase ? values[j].atan2() : 0.0
                 y += values[j].hypot() * cos(angle - phase)
             }
             yValues.append(y)

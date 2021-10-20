@@ -20,6 +20,15 @@ extension Array {
 }
 
 extension Array where Element == FourierOutput {
+    func getFFTAmplitudeSpectrum() -> [Double] {
+        let mul = 2.0 / Double(self.count)
+        return self.map({ $0.hypot() * mul })
+    }
+    
+    func getFFTPhaseSpectrum() -> [Double] {
+        return self.map({ -$0.atan2() })
+    }
+    
     func getAmplitudeSpectrum() -> [Double] {
         return self.map({ $0.hypot() })
     }

@@ -37,9 +37,6 @@ class ViewController: NSViewController {
         
         let signalData = self.service.getValues()
         let polyData = service.polyharmonicSignal()
-        
-        let dftTest = service.getDFT(with: signalData)
-        let fftTest = service.getFFT(with: signalData, invert: true)
 
         // MARK: - DFT
 //        let dft = service.getDFT(with: signalData)
@@ -49,7 +46,9 @@ class ViewController: NSViewController {
         
         // MARK: - Polyharmonic
 //        let dft = service.getDFT(with: polyData)
-//        let restoredData = service.restoreSpectrumPolySignal(values: dft, shouldUsePhase: true)
+//        let restoredData = service.restoreSpectrumPolySignal(amplitudeSpectrum: dft.getAmplitudeSpectrum(),
+//                                                             phaseSpectrum: dft.getPhaseSpectrum(),
+//                                                             shouldUsePhase: true)
         
         // MARK: - FFT
 //        let fft = self.service.getFFT(with: polyData)
@@ -58,11 +57,13 @@ class ViewController: NSViewController {
 //        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: true)
 
 //         MARK: - Poly FFT
-        let fft = self.service.getFFT(with: signalData, invert: false)
-        let restoredData = self.service.restoreSignal(amplitudeSpectrum: fft.getAmplitudeSpectrum(), phaseSpectrum: fft.getPhaseSpectrum())
-//        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: true)
-//
-        self.compareSignals(with: signalData, and: restoredData)
+        let fft = self.service.getFFT(with: polyData)
+        let restoredData = self.service.restoreSpectrumPolySignal(amplitudeSpectrum: fft.getFFTAmplitudeSpectrum(),
+                                                                  phaseSpectrum: fft.getFFTPhaseSpectrum(),
+                                                                  shouldUsePhase: true)
+
+        
+        self.compareSignals(with: polyData, and: restoredData)
     }
     
     private func setupChart() {
@@ -71,8 +72,6 @@ class ViewController: NSViewController {
         self.lineChartView.doubleTapToZoomEnabled = false
         
         let yAxis =  self.lineChartView.leftAxis
-        yAxis.axisMinimum = -50.0
-        yAxis.axisMaximum = 50.0
         yAxis.drawGridLinesEnabled = false
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
         yAxis.setLabelCount(6, force: false)

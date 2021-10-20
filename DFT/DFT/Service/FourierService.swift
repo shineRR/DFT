@@ -78,15 +78,16 @@ final class FourierService {
         return output
     }
 
-    func restoreSpectrumPolySignal(values: [FourierOutput], shouldUsePhase: Bool = false) -> [Double] {
-        let halfLength = (values.count / 2) - 1
+    func restoreSpectrumPolySignal(amplitudeSpectrum: [Double], phaseSpectrum: [Double], shouldUsePhase: Bool = false) -> [Double] {
+        let length = amplitudeSpectrum.count
+        let halfLength = (length / 2) - 1
         var yValues = [Double]()
-        for (i, _) in values.enumerated() {
-            var y = values[0].hypot() / 2
+        for i in 0..<length{
+            var y = amplitudeSpectrum[0] / 2
             for j in 1...halfLength {
-                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(values.count)
-                let phase = shouldUsePhase ? values[j].atan2() : 0.0
-                y += values[j].hypot() * cos(angle - phase)
+                let angle = 2.0 * Double.pi * Double(j) * Double(i) / Double(length)
+                let phase = shouldUsePhase ? phaseSpectrum[j] : 0.0
+                y += amplitudeSpectrum[j] * cos(angle - phase)
             }
             yValues.append(y)
         }

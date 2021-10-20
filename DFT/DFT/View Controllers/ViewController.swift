@@ -38,6 +38,9 @@ class ViewController: NSViewController {
         let signalData = self.service.getValues()
         let polyData = service.polyharmonicSignal()
         
+        let dftTest = service.getDFT(with: signalData)
+        let fftTest = service.getFFT(with: signalData, invert: true)
+
         // MARK: - DFT
 //        let dft = service.getDFT(with: signalData)
 //        let amplitude = dft.getAmplitudeSpectrum()
@@ -49,12 +52,17 @@ class ViewController: NSViewController {
 //        let restoredData = service.restoreSpectrumPolySignal(values: dft, shouldUsePhase: true)
         
         // MARK: - FFT
-//        let fft = self.service.getFFT(with: signalData)
+//        let fft = self.service.getFFT(with: polyData)
 //        let amplitude = fft.getAmplitudeSpectrum()
 //        let phase = fft.getPhaseSpectrum()
-//        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: false)
+//        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: true)
 
-        self.compareSignals(with: polyData, and: restoredData)
+//         MARK: - Poly FFT
+        let fft = self.service.getFFT(with: signalData, invert: false)
+        let restoredData = self.service.restoreSignal(amplitudeSpectrum: fft.getAmplitudeSpectrum(), phaseSpectrum: fft.getPhaseSpectrum())
+//        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: true)
+//
+        self.compareSignals(with: signalData, and: restoredData)
     }
     
     private func setupChart() {
@@ -63,6 +71,8 @@ class ViewController: NSViewController {
         self.lineChartView.doubleTapToZoomEnabled = false
         
         let yAxis =  self.lineChartView.leftAxis
+        yAxis.axisMinimum = -50.0
+        yAxis.axisMaximum = 50.0
         yAxis.drawGridLinesEnabled = false
         yAxis.labelFont = .boldSystemFont(ofSize: 12)
         yAxis.setLabelCount(6, force: false)

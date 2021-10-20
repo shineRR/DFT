@@ -27,15 +27,18 @@ struct FourierOutput {
     
     // MARK: - Static
     static func + (_ lhs: FourierOutput, _ rhs: FourierOutput) -> FourierOutput {
-        return FourierOutput(acos: lhs.acos + rhs.acos, asin: lhs.asin + rhs.asin)
+        return FourierOutput(acos: lhs.acos + rhs.acos,
+                             asin: lhs.asin + rhs.asin)
     }
     
     static func - (_ lhs: FourierOutput, _ rhs: FourierOutput) -> FourierOutput {
-        return FourierOutput(acos: lhs.acos - rhs.acos, asin: lhs.asin - rhs.asin)
+        return FourierOutput(acos: lhs.acos - rhs.acos,
+                             asin: lhs.asin - rhs.asin)
     }
     
     static func * (_ lhs: FourierOutput, _ rhs: FourierOutput) -> FourierOutput {
-        return FourierOutput(acos: lhs.acos * rhs.acos, asin: lhs.asin * rhs.asin)
+        return FourierOutput(acos: (lhs.acos * rhs.acos - lhs.asin * rhs.asin),
+                             asin: (lhs.acos * rhs.asin + lhs.asin * rhs.acos))
     }
 }
 
@@ -57,18 +60,18 @@ class Fourier {
         return FourierOutput(acos: acos * mul, asin: asin * mul)
     }
     
-    static func fft(with inData: [Double], invert: Bool = true) -> [FourierOutput] {
+    static func fft(with inData: [Double], invert: Bool = false) -> [FourierOutput] {
         let length = inData.count
         
-        guard length != 1 else { return [FourierOutput(acos: inData[0], asin: 0.0)] }
-        guard length % 2 <= 0 else { fatalError() }
-        
+        guard length > 1 else { return [FourierOutput(acos: inData[0], asin: 0.0)] }
+        guard length % 2 <= 0 else { return [] }
+
         let halfLength = length / 2
-        
+
         var result = Array.init(repeating: FourierOutput(acos: 0.0, asin: 0.0), count: length)
         var xEven = [Double]()
         var xOdd = [Double]()
-        
+
         for i in 0..<halfLength {
             xEven.append(inData[2 * i])
             xOdd.append(inData[2 * i + 1])
@@ -78,17 +81,16 @@ class Fourier {
         let xOddNext = fft(with: xOdd)
         
         for i in 0..<halfLength {
-            result[i] = xEvenNext[i] + getW(for: i, with: length, invert: invert) * xOddNext[i]
-            result[i + halfLength] = xEvenNext[i] - getW(for: i, with: length, invert: invert) * xOddNext[i]
+            let t = getW(for: i, with: length) * xOddNext[i]
+            result[i]              = xEvenNext[i] + t
+            result[i + halfLength] = xEvenNext[i] - t
         }
         
         return result
     }
     
-    
-    static func getW(for k: Int, with n: Int, invert: Bool) -> FourierOutput {
-        guard k % n != 0 else { return  FourierOutput(acos: 1.0, asin: 0.0) }
-        let arg = (invert ? -1.0 : 1.0) * 2.0 * Double.pi * Double(k) / Double(n)
+    static private func getW(for k: Int, with n: Int) -> FourierOutput {
+        let arg = -2.0 * Double.pi * Double(k) / Double(n)
         return FourierOutput(acos: cos(arg), asin: sin(arg))
     }
 }

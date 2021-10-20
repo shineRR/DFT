@@ -31,8 +31,8 @@ final class FourierService {
         return self.data
     }
     
-    func getFFT(with inData: [Double]) -> [FourierOutput] {
-        return Fourier.fft(with: inData)
+    func getFFT(with inData: [Double], invert: Bool = false) -> [FourierOutput] {
+        return Fourier.fft(with: inData, invert: invert)
     }
     
     func getDFT(with inData: [Double]) -> [FourierOutput] {

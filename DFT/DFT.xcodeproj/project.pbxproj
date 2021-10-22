@@ -80,6 +80,16 @@
 			path = Signal;
 			sourceTree = "<group>";
 		};
+		CADBA31227235C7700FA7597 /* Fourier */ = {
+			isa = PBXGroup;
+			children = (
+				CAA17F5E2722DEFC00E61E1B /* Spectrum.swift */,
+				CAED7A712709F44D004D7B02 /* Fourier.swift */,
+				CAA17F602722E0EC00E61E1B /* FourierOutput.swift */,
+			);
+			path = Fourier;
+			sourceTree = "<group>";
+		};
 		CAE9B9A4270E2CC100ABF51E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,11 +166,9 @@
 		CAED7A702709F440004D7B02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CADBA31227235C7700FA7597 /* Fourier */,
 				CADBA30D272354B400FA7597 /* Signal */,
 				CA7E2BE4270B6C7400832E69 /* Constants.swift */,
-				CAED7A712709F44D004D7B02 /* Fourier.swift */,
-				CAA17F5E2722DEFC00E61E1B /* Spectrum.swift */,
-				CAA17F602722E0EC00E61E1B /* FourierOutput.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

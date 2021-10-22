@@ -21,49 +21,41 @@ class ViewController: NSViewController {
     @IBOutlet private weak var lineChartView: LineChartView!
     
     // MARK: - Properties
-    private let service = FourierService()
     
     // MARK: - Override
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupChart()
-        self.service.delegate = self
         self.execute()
     }
     
     // MARK: - Methods
     private func execute() {
         
-        let signalData = self.service.getValues()
-        let polyData = service.polyharmonicSignal()
+        let signal = Signal()
+        let polySignal = PolyharmonicSignal()
+        
+        let signalData = signal.values
+        let polyData = polySignal.values
 
         // MARK: - DFT
-//        let dft = service.getDFT(with: signalData)
-//        let amplitude = dft.getAmplitudeSpectrum()
-//        let phase = dft.getPhaseSpectrum()
-//        let restoredData = service.restoreSignal(amplitudeSpectrum: amplitude, phaseSpectrum: phase)
+        let dft = signal.getDFT()
+        let restoredData = signal.restoreSignal(with: dft)
         
         // MARK: - Polyharmonic
-//        let dft = service.getDFT(with: polyData)
-//        let restoredData = service.restoreSpectrumPolySignal(amplitudeSpectrum: dft.getAmplitudeSpectrum(),
-//                                                             phaseSpectrum: dft.getPhaseSpectrum(),
-//                                                             shouldUsePhase: true)
+//        let dft = polySignal.getDFT()
+//        let restoredData = polySignal.restoreSignal(with: dft, shouldUsePhase: true)
         
         // MARK: - FFT
-//        let fft = self.service.getFFT(with: polyData)
-//        let amplitude = fft.getAmplitudeSpectrum()
-//        let phase = fft.getPhaseSpectrum()
-//        let restoredData = service.restoreSpectrumPolySignal(values: fft, shouldUsePhase: true)
+//        let fft = signal.getFFT()
+//        let restoredData = signal.restoreSignal(with: fft)
 
-//         MARK: - Poly FFT
-        let fft = self.service.getFFT(with: polyData)
-        let restoredData = self.service.restoreSpectrumPolySignal(amplitudeSpectrum: fft.getFFTAmplitudeSpectrum(),
-                                                                  phaseSpectrum: fft.getFFTPhaseSpectrum(),
-                                                                  shouldUsePhase: true)
-
+        // MARK: - Poly FFT
+//        let fft = polySignal.getFFT()
+//        let restoredData = polySignal.restoreSignal(with: fft, shouldUsePhase: true)
         
-        self.compareSignals(with: polyData, and: restoredData)
+        self.compareSignals(with: signalData, and: restoredData)
     }
     
     private func setupChart() {
@@ -122,8 +114,8 @@ extension ViewController: ChartDelegate {
             }
         }
         
-        let initSet = self.getDataSet(color: ConstantSignal.chartColor, label: "Initial Signal", alpha: 0.3)
-        let restoredSet = self.getDataSet(color: ConstantSignal.chartRestoredColor, label: "Restored Signal", alpha: 0.3)
+        let initSet = self.getDataSet(color: Constants.chartColor, label: "Initial Signal", alpha: 0.3)
+        let restoredSet = self.getDataSet(color: Constants.chartRestoredColor, label: "Restored Signal", alpha: 0.3)
         
         addEntries(for: initSet, values: initValues)
         addEntries(for: restoredSet, values: restoredValues)

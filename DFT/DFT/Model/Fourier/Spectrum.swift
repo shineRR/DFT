@@ -14,7 +14,7 @@ protocol SpectrumProtocol {
     func getPhase() -> Double
 }
 
-class Spectrum {
+class Spectrum: Sequence {
     
     // MARK: - Properties
     var amplitude = [Double]()
@@ -25,8 +25,23 @@ class Spectrum {
     }
     
     // MARK: - Init
-    init(with spectrum: [SpectrumProtocol]) {
+    init(with spectrum: [SpectrumProtocol] = []) {
         self.amplitude = spectrum.map({ $0.getAmplitude() })
         self.phase = spectrum.map({ $0.getPhase() })
+    }
+    
+    // MARK: - Methods
+    func append(_ newElement: (amplitude: Double, phase: Double)) {
+        self.amplitude.append(newElement.amplitude)
+        self.phase.append(newElement.phase)
+    }
+    
+    func makeIterator() -> AnyIterator<(amplitude: Double, phase: Double)> {
+        var index = 0
+        return AnyIterator {
+            defer { index += 1 }
+            return self.count > index ? (amplitude: self.amplitude[index], phase: self.phase[index])
+                                      : nil
+        }
     }
 }

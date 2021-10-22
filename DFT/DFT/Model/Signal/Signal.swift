@@ -56,7 +56,7 @@ class Signal: RestorableSignal {
     private func createSignal() -> [Double] {
         var data = [Double]()
         let amplitude = 10.0
-        let frequency = 5.0
+        let frequency = 10.0
         for i in 0..<Constants.nCount {
             let angle = 2 * Double.pi * Double(i) * frequency / Double(Constants.nCount)
             let value = amplitude * cos(angle)

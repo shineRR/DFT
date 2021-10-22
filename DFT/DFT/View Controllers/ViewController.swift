@@ -41,11 +41,14 @@ class ViewController: NSViewController {
 
         // MARK: - DFT
         let dft = signal.getDFT()
-        let restoredData = signal.restoreSignal(with: dft)
+//        let restoredData = signal.restoreSignal(with: dft)
         
         // MARK: - Polyharmonic
 //        let dft = polySignal.getDFT()
-//        let restoredData = polySignal.restoreSignal(with: dft, shouldUsePhase: true)
+        let freq1 = FourierService.filterSignal(with: dft, by: { $0 > 20 }) // Passes all >20 hz
+        let freq = FourierService.filterSignal(with: dft, by: { $0 < 20 }) // Passes all <20 hz
+        let restoredData1 = signal.restoreSignal(with: freq1, shouldUsePhase: true)
+        let restoredData = signal.restoreSignal(with: freq, shouldUsePhase: true)
         
         // MARK: - FFT
 //        let fft = signal.getFFT()
@@ -55,7 +58,7 @@ class ViewController: NSViewController {
 //        let fft = polySignal.getFFT()
 //        let restoredData = polySignal.restoreSignal(with: fft, shouldUsePhase: true)
         
-        self.compareSignals(with: signalData, and: restoredData)
+        self.compareSignals(with: restoredData1, and: restoredData)
     }
     
     private func setupChart() {

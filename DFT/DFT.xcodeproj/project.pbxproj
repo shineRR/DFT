@@ -11,9 +11,13 @@
 		CA7E2BE5270B6C7400832E69 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E2BE4270B6C7400832E69 /* Constants.swift */; };
 		CAA17F5F2722DEFC00E61E1B /* Spectrum.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA17F5E2722DEFC00E61E1B /* Spectrum.swift */; };
 		CAA17F612722E0EC00E61E1B /* FourierOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA17F602722E0EC00E61E1B /* FourierOutput.swift */; };
+		CAAB659B27243CE5006034C3 /* NSFilterRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB659A27243CE5006034C3 /* NSFilterRadioButton.swift */; };
+		CAAB659E27243E8D006034C3 /* NSViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB659D27243E8D006034C3 /* NSViewController+Extensions.swift */; };
+		CAAB65A027243F3C006034C3 /* NSSignalRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB659F27243F3C006034C3 /* NSSignalRadioButton.swift */; };
 		CABD29C5271C957000F61ADB /* FourierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABD29C4271C957000F61ADB /* FourierService.swift */; };
 		CADBA30F272354C300FA7597 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA30E272354C300FA7597 /* Signal.swift */; };
 		CADBA311272354CF00FA7597 /* PolyharmonicSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA310272354CF00FA7597 /* PolyharmonicSignal.swift */; };
+		CADBA3142723710D00FA7597 /* SignalRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA3132723710D00FA7597 /* SignalRecognizer.swift */; };
 		CAE9B9A6270E2CD000ABF51E /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */; };
 		CAED7A5E2709EF10004D7B02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A5D2709EF10004D7B02 /* AppDelegate.swift */; };
 		CAED7A602709EF10004D7B02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAED7A5F2709EF10004D7B02 /* ViewController.swift */; };
@@ -28,9 +32,13 @@
 		CA7E2BE4270B6C7400832E69 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CAA17F5E2722DEFC00E61E1B /* Spectrum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spectrum.swift; sourceTree = "<group>"; };
 		CAA17F602722E0EC00E61E1B /* FourierOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourierOutput.swift; sourceTree = "<group>"; };
+		CAAB659A27243CE5006034C3 /* NSFilterRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFilterRadioButton.swift; sourceTree = "<group>"; };
+		CAAB659D27243E8D006034C3 /* NSViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Extensions.swift"; sourceTree = "<group>"; };
+		CAAB659F27243F3C006034C3 /* NSSignalRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSignalRadioButton.swift; sourceTree = "<group>"; };
 		CABD29C4271C957000F61ADB /* FourierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourierService.swift; sourceTree = "<group>"; };
 		CADBA30E272354C300FA7597 /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		CADBA310272354CF00FA7597 /* PolyharmonicSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyharmonicSignal.swift; sourceTree = "<group>"; };
+		CADBA3132723710D00FA7597 /* SignalRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalRecognizer.swift; sourceTree = "<group>"; };
 		CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		CAED7A5A2709EF10004D7B02 /* DFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAED7A5D2709EF10004D7B02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,9 +71,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CAAB659927243CD5006034C3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB659A27243CE5006034C3 /* NSFilterRadioButton.swift */,
+				CAAB659F27243F3C006034C3 /* NSSignalRadioButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		CABD29C3271C954700F61ADB /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CADBA3132723710D00FA7597 /* SignalRecognizer.swift */,
 				CABD29C4271C957000F61ADB /* FourierService.swift */,
 			);
 			path = Service;
@@ -93,6 +111,7 @@
 		CAE9B9A4270E2CC100ABF51E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CAAB659D27243E8D006034C3 /* NSViewController+Extensions.swift */,
 				CAE9B9A5270E2CD000ABF51E /* Array+Extensions.swift */,
 			);
 			path = Extensions;
@@ -119,6 +138,7 @@
 		CAED7A5C2709EF10004D7B02 /* DFT */ = {
 			isa = PBXGroup;
 			children = (
+				CAAB659927243CD5006034C3 /* Components */,
 				CABD29C3271C954700F61ADB /* Service */,
 				CAE9B9A4270E2CC100ABF51E /* Extensions */,
 				CAED7A702709F440004D7B02 /* Model */,
@@ -296,14 +316,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAED7A722709F44D004D7B02 /* Fourier.swift in Sources */,
+				CAAB659E27243E8D006034C3 /* NSViewController+Extensions.swift in Sources */,
 				CABD29C5271C957000F61ADB /* FourierService.swift in Sources */,
+				CAAB659B27243CE5006034C3 /* NSFilterRadioButton.swift in Sources */,
 				CAE9B9A6270E2CD000ABF51E /* Array+Extensions.swift in Sources */,
 				CAA17F612722E0EC00E61E1B /* FourierOutput.swift in Sources */,
+				CAAB65A027243F3C006034C3 /* NSSignalRadioButton.swift in Sources */,
 				CADBA311272354CF00FA7597 /* PolyharmonicSignal.swift in Sources */,
 				CADBA30F272354C300FA7597 /* Signal.swift in Sources */,
 				CAA17F5F2722DEFC00E61E1B /* Spectrum.swift in Sources */,
 				CAED7A602709EF10004D7B02 /* ViewController.swift in Sources */,
 				CAED7A5E2709EF10004D7B02 /* AppDelegate.swift in Sources */,
+				CADBA3142723710D00FA7597 /* SignalRecognizer.swift in Sources */,
 				CA7E2BE5270B6C7400832E69 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

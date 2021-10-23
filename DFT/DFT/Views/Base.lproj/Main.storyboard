@@ -707,27 +707,278 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="DFT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="866" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="945" height="538"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I6U-2q-gIN">
+                                <rect key="frame" x="368" y="500" width="209" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="k0V-Sv-iwt">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="DFT" width="100" selected="YES"/>
+                                        <segment label="FFT" width="100" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="didSwitchSegment:" target="XfG-lQ-9wD" id="bnO-tT-mHr"/>
+                                </connections>
+                            </segmentedControl>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4G-eV-m58">
+                                <rect key="frame" x="30" y="442" width="91" height="44"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="naE-hT-rAY" customClass="NSSignalRadioButton" customModule="DFT" customModuleProvider="target">
+                                        <rect key="frame" x="-2" y="27" width="64" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Signal" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="DRp-2H-m9C">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="signal">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didChooseSignal:" target="XfG-lQ-9wD" id="uZc-Jx-vR6"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SUN-gU-68W" customClass="NSSignalRadioButton" customModule="DFT" customModuleProvider="target">
+                                        <rect key="frame" x="-2" y="-1" width="93" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Poly Signal" bezelStyle="regularSquare" imagePosition="left" inset="2" id="drL-VC-AlL">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="signal">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didChooseSignal:" target="XfG-lQ-9wD" id="FCt-uU-Egx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAS-Xb-ZQv">
+                                <rect key="frame" x="16" y="40" width="140" height="60"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Npo-4g-V9O" customClass="NSSignalRadioButton" customModule="DFT" customModuleProvider="target">
+                                        <rect key="frame" x="-7" y="33" width="154" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="01u-CT-ajg"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Play initial signal" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1rQ-YH-AgD">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="signal">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="reproduceSignal:" target="XfG-lQ-9wD" id="dj0-v8-ybb"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IiW-Ox-Wek" customClass="NSSignalRadioButton" customModule="DFT" customModuleProvider="target">
+                                        <rect key="frame" x="-7" y="-7" width="154" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="jVt-W7-uTA"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Play restored signal" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KDY-lI-vA3">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="signal">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="reproduceSignal:" target="XfG-lQ-9wD" id="Ny9-hC-kdX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="gp0-3Q-YBK">
+                                <rect key="frame" x="15" y="357" width="141" height="65"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8ES-ZO-ccX">
+                                        <rect key="frame" x="17" y="39" width="107" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Restore settings:" id="Xc7-R3-nUa">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xk5-4W-Ka0">
+                                        <rect key="frame" x="23" y="7" width="98" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Use phase" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tzU-a0-50f">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="redrawChart:" target="XfG-lQ-9wD" id="Mt6-bU-p8z"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8ES-ZO-ccX" firstAttribute="centerX" secondItem="gp0-3Q-YBK" secondAttribute="centerX" id="0wZ-XA-Xww"/>
+                                    <constraint firstAttribute="height" constant="65" id="4Jd-Dv-5Sn"/>
+                                    <constraint firstItem="xk5-4W-Ka0" firstAttribute="leading" secondItem="gp0-3Q-YBK" secondAttribute="leading" constant="25" id="ZDh-Jn-bkI"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="xk5-4W-Ka0" secondAttribute="trailing" constant="20" symbolic="YES" id="cff-Td-oH8"/>
+                                    <constraint firstItem="xk5-4W-Ka0" firstAttribute="top" secondItem="8ES-ZO-ccX" secondAttribute="bottom" constant="15" id="e0E-aw-wyq"/>
+                                    <constraint firstItem="8ES-ZO-ccX" firstAttribute="top" secondItem="gp0-3Q-YBK" secondAttribute="top" constant="10" id="iQr-5V-kXC"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="2Az-S0-T1f">
+                                <rect key="frame" x="15" y="157" width="141" height="200"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHf-30-UmQ">
+                                        <rect key="frame" x="23" y="173" width="98" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Use Filter" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UqV-NT-1GZ">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="didTapOnUseFilter:" target="XfG-lQ-9wD" id="cZ0-LU-4af"/>
+                                        </connections>
+                                    </button>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="pAq-t0-kCn">
+                                        <rect key="frame" x="0.0" y="0.0" width="141" height="164"/>
+                                        <subviews>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wz-Ka-WWe">
+                                                <rect key="frame" x="27" y="82" width="87" height="72"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qfJ-h3-UMT" customClass="NSFilterRadioButton" customModule="DFT" customModuleProvider="target">
+                                                        <rect key="frame" x="-2" y="55" width="79" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Low freq" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4jv-sn-Pj2">
+                                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="filter">
+                                                                <integer key="value" value="0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didChooseFilter:" target="XfG-lQ-9wD" id="lAF-jV-Bvk"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zn8-Ba-OQk" customClass="NSFilterRadioButton" customModule="DFT" customModuleProvider="target">
+                                                        <rect key="frame" x="-2" y="27" width="83" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="High freq" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="gxb-QK-tlN">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="filter">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didChooseFilter:" target="XfG-lQ-9wD" id="jeq-QA-boD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KWz-wz-Wdd" customClass="NSFilterRadioButton" customModule="DFT" customModuleProvider="target">
+                                                        <rect key="frame" x="-2" y="-1" width="89" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Band pass" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UrB-F1-XHA">
+                                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="filter">
+                                                                <integer key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didChooseFilter:" target="XfG-lQ-9wD" id="XY1-kl-RfY"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <real value="1000"/>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="6wz-Ka-WWe" firstAttribute="top" secondItem="pAq-t0-kCn" secondAttribute="top" constant="10" id="dkr-5Q-cT8"/>
+                                            <constraint firstItem="6wz-Ka-WWe" firstAttribute="centerX" secondItem="pAq-t0-kCn" secondAttribute="centerX" id="uiY-P6-cbH"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="VHf-30-UmQ" firstAttribute="leading" secondItem="2Az-S0-T1f" secondAttribute="leading" constant="25" id="0KU-nU-s5R"/>
+                                    <constraint firstAttribute="bottom" secondItem="pAq-t0-kCn" secondAttribute="bottom" id="7F9-X7-uoS"/>
+                                    <constraint firstAttribute="trailing" secondItem="pAq-t0-kCn" secondAttribute="trailing" id="OWd-co-iDU"/>
+                                    <constraint firstItem="VHf-30-UmQ" firstAttribute="top" secondItem="2Az-S0-T1f" secondAttribute="top" constant="10" id="Z7d-6a-1YG"/>
+                                    <constraint firstItem="pAq-t0-kCn" firstAttribute="top" secondItem="VHf-30-UmQ" secondAttribute="bottom" constant="10" id="gfb-vq-Fwo"/>
+                                    <constraint firstItem="pAq-t0-kCn" firstAttribute="leading" secondItem="2Az-S0-T1f" secondAttribute="leading" id="qyj-15-lh5"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="VHf-30-UmQ" secondAttribute="trailing" constant="20" symbolic="YES" id="tvm-PJ-Gys"/>
+                                    <constraint firstAttribute="height" constant="200" id="wnK-Wo-29T"/>
+                                </constraints>
+                            </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="9ro-ab-AVX" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="866" height="480"/>
+                                <rect key="frame" x="171" y="0.0" width="774" height="486"/>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="9ro-ab-AVX" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="K7n-fn-VLi"/>
-                            <constraint firstItem="9ro-ab-AVX" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Uzu-Yl-WRh"/>
+                            <constraint firstItem="gp0-3Q-YBK" firstAttribute="top" secondItem="c4G-eV-m58" secondAttribute="bottom" constant="20" id="17J-QN-kdh"/>
+                            <constraint firstItem="GAS-Xb-ZQv" firstAttribute="centerX" secondItem="c4G-eV-m58" secondAttribute="centerX" constant="10" id="6W3-is-ELs"/>
+                            <constraint firstItem="9ro-ab-AVX" firstAttribute="leading" secondItem="2Az-S0-T1f" secondAttribute="trailing" constant="15" id="Cwi-md-fcC"/>
+                            <constraint firstItem="9ro-ab-AVX" firstAttribute="leading" secondItem="gp0-3Q-YBK" secondAttribute="trailing" constant="15" id="ET5-ZL-KgK"/>
+                            <constraint firstItem="9ro-ab-AVX" firstAttribute="top" secondItem="I6U-2q-gIN" secondAttribute="bottom" constant="15" id="J7i-54-rtW"/>
+                            <constraint firstAttribute="bottom" secondItem="GAS-Xb-ZQv" secondAttribute="bottom" constant="40" id="PIL-iB-FFH"/>
                             <constraint firstAttribute="trailing" secondItem="9ro-ab-AVX" secondAttribute="trailing" id="W5t-90-Hfy"/>
+                            <constraint firstItem="I6U-2q-gIN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="ciD-VP-1hJ"/>
+                            <constraint firstItem="9ro-ab-AVX" firstAttribute="leading" secondItem="c4G-eV-m58" secondAttribute="trailing" constant="50" id="d6T-jh-9zu"/>
+                            <constraint firstItem="gp0-3Q-YBK" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="gmg-Bn-ugz"/>
+                            <constraint firstItem="c4G-eV-m58" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="30" id="hwt-hR-Taq"/>
+                            <constraint firstItem="c4G-eV-m58" firstAttribute="top" secondItem="I6U-2q-gIN" secondAttribute="bottom" constant="15" id="jYB-hx-SM6"/>
+                            <constraint firstItem="2Az-S0-T1f" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="oSR-W0-9Hx"/>
+                            <constraint firstItem="I6U-2q-gIN" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="qVy-Bb-s5I"/>
                             <constraint firstAttribute="bottom" secondItem="9ro-ab-AVX" secondAttribute="bottom" id="xmF-Qt-mpP"/>
+                            <constraint firstItem="2Az-S0-T1f" firstAttribute="top" secondItem="gp0-3Q-YBK" secondAttribute="bottom" id="zxx-ry-DCB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bandPassFilterRadioButton" destination="KWz-wz-Wdd" id="kOR-hB-ng0"/>
+                        <outlet property="filterSettingsView" destination="pAq-t0-kCn" id="fSG-0q-R4k"/>
+                        <outlet property="highFilterRadioButton" destination="Zn8-Ba-OQk" id="05u-P4-tW4"/>
                         <outlet property="lineChartView" destination="9ro-ab-AVX" id="ZfS-bM-nqp"/>
+                        <outlet property="lowFilterRadioButton" destination="qfJ-h3-UMT" id="vUG-TT-v5L"/>
+                        <outlet property="polyharmonicSignalRadioButton" destination="SUN-gU-68W" id="Jw6-QJ-KEy"/>
+                        <outlet property="segmentControl" destination="I6U-2q-gIN" id="VP5-6r-X2M"/>
+                        <outlet property="shouldUseFilterRadioButton" destination="VHf-30-UmQ" id="4B3-Ya-XaP"/>
+                        <outlet property="shouldUsePhaseRadioButton" destination="xk5-4W-Ka0" id="gyn-cA-dFD"/>
+                        <outlet property="signalRadioButton" destination="naE-hT-rAY" id="ZLi-bm-Mba"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="268" y="760"/>
+            <point key="canvasLocation" x="307.5" y="789"/>
         </scene>
     </scenes>
 </document>

@@ -24,7 +24,6 @@ enum ReproducingSignal: Int {
 class SignalRecognizer: AudioSignal {
     
     // MARK: - Properties
-    
     private let engine = AVAudioEngine()
     private var srcNode: AVAudioSourceNode!
     private var mainMixer: AVAudioMixerNode!

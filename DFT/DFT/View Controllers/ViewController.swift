@@ -156,7 +156,7 @@ class ViewController: NSViewController {
         case .high:
             return { $0 > self.filterValue }
         case .bandPass:
-            return { $0 > self.lowerBound && $0 < self.upperBound }
+            return { $0 >= self.lowerBound && $0 <= self.upperBound }
         }
     }
     

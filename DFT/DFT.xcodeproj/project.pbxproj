@@ -14,6 +14,7 @@
 		CAAB659B27243CE5006034C3 /* NSFilterRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB659A27243CE5006034C3 /* NSFilterRadioButton.swift */; };
 		CAAB659E27243E8D006034C3 /* NSViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB659D27243E8D006034C3 /* NSViewController+Extensions.swift */; };
 		CAAB65A027243F3C006034C3 /* NSSignalRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB659F27243F3C006034C3 /* NSSignalRadioButton.swift */; };
+		CAAB65A327246016006034C3 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB65A227246016006034C3 /* ModalViewController.swift */; };
 		CABD29C5271C957000F61ADB /* FourierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABD29C4271C957000F61ADB /* FourierService.swift */; };
 		CADBA30F272354C300FA7597 /* Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA30E272354C300FA7597 /* Signal.swift */; };
 		CADBA311272354CF00FA7597 /* PolyharmonicSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA310272354CF00FA7597 /* PolyharmonicSignal.swift */; };
@@ -35,6 +36,7 @@
 		CAAB659A27243CE5006034C3 /* NSFilterRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFilterRadioButton.swift; sourceTree = "<group>"; };
 		CAAB659D27243E8D006034C3 /* NSViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Extensions.swift"; sourceTree = "<group>"; };
 		CAAB659F27243F3C006034C3 /* NSSignalRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSSignalRadioButton.swift; sourceTree = "<group>"; };
+		CAAB65A227246016006034C3 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		CABD29C4271C957000F61ADB /* FourierService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourierService.swift; sourceTree = "<group>"; };
 		CADBA30E272354C300FA7597 /* Signal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signal.swift; sourceTree = "<group>"; };
 		CADBA310272354CF00FA7597 /* PolyharmonicSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyharmonicSignal.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				CAED7A5F2709EF10004D7B02 /* ViewController.swift */,
+				CAAB65A227246016006034C3 /* ModalViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAED7A722709F44D004D7B02 /* Fourier.swift in Sources */,
+				CAAB65A327246016006034C3 /* ModalViewController.swift in Sources */,
 				CAAB659E27243E8D006034C3 /* NSViewController+Extensions.swift in Sources */,
 				CABD29C5271C957000F61ADB /* FourierService.swift in Sources */,
 				CAAB659B27243CE5006034C3 /* NSFilterRadioButton.swift in Sources */,

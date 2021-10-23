@@ -13,7 +13,7 @@ final class FourierService {
     
     private static let zeroSpectrum = (amplitude: 0.0, phase: 0.0)
 
-    // MARK: - Static
+    // MARK: - Static Methods
     static func getFFT(with inData: [Double], invert: Bool = false) -> Spectrum {
         return Spectrum(with: Fourier.fft(with: inData, invert: invert))
     }

@@ -32,11 +32,20 @@ class ViewController: NSViewController {
     @IBOutlet private weak var signalRadioButton: NSSignalRadioButton!
     @IBOutlet private weak var polyharmonicSignalRadioButton: NSSignalRadioButton!
     
+    /// Low - High Filter
+    @IBOutlet private weak var freqTextField: NSTextField!
+    @IBOutlet private weak var signLabel: NSTextField!
+    
+    /// Band pass Filter
+    @IBOutlet private weak var lowerBoundTextField: NSTextField!
+    @IBOutlet private weak var upperBoundTextField: NSTextField!
+    
     /// Filter radio buttons
     @IBOutlet private weak var shouldUseFilterRadioButton: NSButton!
     @IBOutlet private weak var lowFilterRadioButton: NSFilterRadioButton!
     @IBOutlet private weak var highFilterRadioButton: NSFilterRadioButton!
     @IBOutlet private weak var bandPassFilterRadioButton: NSFilterRadioButton!
+    @IBOutlet private weak var bandPassRangeView: NSView!
     
     // MARK: - Properties
     private var recognizer: SignalRecognizer?
@@ -50,6 +59,15 @@ class ViewController: NSViewController {
     private var shouldUseFilter: Bool {
         return self.shouldUseFilterRadioButton.state == .on
     }
+    private var filterValue: Int {
+        return Int(self.freqTextField.intValue)
+    }
+    private var lowerBound: Int {
+        return Int(self.lowerBoundTextField.intValue)
+    }
+    private var upperBound: Int {
+        return Int(self.upperBoundTextField.intValue)
+    }
     
     // MARK: - Override
     override func viewDidLoad() {
@@ -62,7 +80,8 @@ class ViewController: NSViewController {
     
     // MARK: - IBAction
     @IBAction func reproduceSignal(_ sender: NSSignalRadioButton) {
-        self.recognizer?.setSignal(ReproducingSignal(rawValue: sender.signalType.rawValue))
+        guard let signal = ReproducingSignal(rawValue: sender.signalType.rawValue) else { return }
+        self.recognizer?.setSignal(signal)
         self.recognizer?.reproduceSignal()
     }
     
@@ -82,6 +101,7 @@ class ViewController: NSViewController {
         self.selectedFilter = sender.filterType
         self.changeRadionButtonState(for: [self.lowFilterRadioButton, self.highFilterRadioButton, self.bandPassFilterRadioButton],
                                      to: .off, except: sender)
+        self.setupFilterView()
         self.execute()
     }
     
@@ -132,12 +152,30 @@ class ViewController: NSViewController {
     private func createFilter(with type: FilterType) -> ((Int) -> Bool) {
         switch type {
         case .low:
-            return { $0 < 15 }
+            return { $0 < self.filterValue }
         case .high:
-            return { $0 > 15 }
+            return { $0 > self.filterValue }
         case .bandPass:
-            return { $0 > 10 && $0 < 15 }
+            return { $0 > self.lowerBound && $0 < self.upperBound }
         }
+    }
+    
+    private func setupFilterView() {
+        switch self.selectedFilter {
+        case .low:
+            self.setupRange(sign: "<")
+        case .high:
+            self.setupRange(sign: ">")
+        case .bandPass:
+            self.setupRange(isBandPass: true)
+        }
+    }
+    
+    private func setupRange(sign: String = "", isBandPass: Bool = false) {
+        self.signLabel.stringValue = sign
+        self.signLabel.isHidden = isBandPass
+        self.freqTextField.isHidden = isBandPass
+        self.bandPassRangeView.isHidden = !isBandPass
     }
     
     private func setupUI() {

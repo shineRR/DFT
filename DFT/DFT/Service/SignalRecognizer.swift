@@ -16,7 +16,7 @@ protocol AudioSignal {
     func stopEngine()
 }
 
-enum ReproducingSignal {
+enum ReproducingSignal: Int {
     case initial = 0
     case restored
 }
@@ -53,7 +53,7 @@ class SignalRecognizer: AudioSignal {
     }
     
     func reproduceSignal() {
-        self.saveFile()
+        self.stopEngine()
         do {
             try engine.start()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(duration)) {

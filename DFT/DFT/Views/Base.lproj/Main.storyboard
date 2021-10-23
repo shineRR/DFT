@@ -922,9 +922,112 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V9q-Sa-cNH">
+                                                <rect key="frame" x="56" y="20" width="30" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="4mP-U5-nPw"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="FBS-WK-qfi">
+                                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="wFa-dd-7jw"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <action selector="redrawChart:" target="XfG-lQ-9wD" id="Atp-1B-tVD"/>
+                                                </connections>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bee-g3-iKs">
+                                                <rect key="frame" x="35" y="51" width="72" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Frequency:" id="gh8-zf-iIT">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SuS-6b-N3T">
+                                                <rect key="frame" x="45" y="23" width="13" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="&lt;" id="vGx-Rx-wHG">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-WV-Kni">
+                                                <rect key="frame" x="0.0" y="5" width="141" height="41"/>
+                                                <subviews>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="npf-Fp-jav">
+                                                        <rect key="frame" x="35" y="15" width="72" height="21"/>
+                                                        <subviews>
+                                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WNH-Na-zy4">
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="21"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="3JJ-Nw-ZSL"/>
+                                                                </constraints>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="QUw-s1-ahJ">
+                                                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Eee-WY-bGZ"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <action selector="redrawChart:" target="XfG-lQ-9wD" id="fnj-sk-mau"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xuy-UZ-8OC">
+                                                                <rect key="frame" x="28" y="3" width="16" height="16"/>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="..." id="CNA-Bl-iyi">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IdL-7j-q0a">
+                                                                <rect key="frame" x="42" y="0.0" width="30" height="21"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="F9x-cy-OzD"/>
+                                                                </constraints>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="zjn-dh-7CQ">
+                                                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="CbX-rX-oH9"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                                <connections>
+                                                                    <action selector="redrawChart:" target="XfG-lQ-9wD" id="TUY-lu-cJg"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="npf-Fp-jav" firstAttribute="centerX" secondItem="9w7-WV-Kni" secondAttribute="centerX" id="PIM-Wz-Ea6"/>
+                                                    <constraint firstItem="npf-Fp-jav" firstAttribute="top" secondItem="9w7-WV-Kni" secondAttribute="top" constant="5" id="yD7-h5-b5A"/>
+                                                </constraints>
+                                            </customView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="9w7-WV-Kni" firstAttribute="leading" secondItem="pAq-t0-kCn" secondAttribute="leading" id="Cs5-wc-9Xl"/>
+                                            <constraint firstItem="V9q-Sa-cNH" firstAttribute="centerX" secondItem="Bee-g3-iKs" secondAttribute="centerX" id="IoV-gO-P8O"/>
+                                            <constraint firstItem="Bee-g3-iKs" firstAttribute="top" secondItem="6wz-Ka-WWe" secondAttribute="bottom" constant="15" id="Kwz-UJ-UdD"/>
+                                            <constraint firstItem="Bee-g3-iKs" firstAttribute="centerX" secondItem="pAq-t0-kCn" secondAttribute="centerX" id="MTg-MP-FJI"/>
+                                            <constraint firstAttribute="trailing" secondItem="9w7-WV-Kni" secondAttribute="trailing" id="V5u-37-IPP"/>
+                                            <constraint firstAttribute="bottom" secondItem="9w7-WV-Kni" secondAttribute="bottom" constant="5" id="Wrc-CB-ckU"/>
+                                            <constraint firstItem="V9q-Sa-cNH" firstAttribute="leading" secondItem="SuS-6b-N3T" secondAttribute="trailing" id="dJx-VH-mub"/>
                                             <constraint firstItem="6wz-Ka-WWe" firstAttribute="top" secondItem="pAq-t0-kCn" secondAttribute="top" constant="10" id="dkr-5Q-cT8"/>
+                                            <constraint firstItem="9w7-WV-Kni" firstAttribute="top" secondItem="Bee-g3-iKs" secondAttribute="bottom" constant="5" id="nMs-cR-Udq"/>
+                                            <constraint firstItem="V9q-Sa-cNH" firstAttribute="top" secondItem="Bee-g3-iKs" secondAttribute="bottom" constant="10" id="nbr-yf-IRG"/>
+                                            <constraint firstItem="SuS-6b-N3T" firstAttribute="centerY" secondItem="V9q-Sa-cNH" secondAttribute="centerY" id="sFW-bh-ZMG"/>
                                             <constraint firstItem="6wz-Ka-WWe" firstAttribute="centerX" secondItem="pAq-t0-kCn" secondAttribute="centerX" id="uiY-P6-cbH"/>
                                         </constraints>
                                     </customView>
@@ -965,15 +1068,20 @@
                     </view>
                     <connections>
                         <outlet property="bandPassFilterRadioButton" destination="KWz-wz-Wdd" id="kOR-hB-ng0"/>
+                        <outlet property="bandPassRangeView" destination="9w7-WV-Kni" id="8wR-Vk-A22"/>
                         <outlet property="filterSettingsView" destination="pAq-t0-kCn" id="fSG-0q-R4k"/>
+                        <outlet property="freqTextField" destination="V9q-Sa-cNH" id="NA5-5O-E6f"/>
                         <outlet property="highFilterRadioButton" destination="Zn8-Ba-OQk" id="05u-P4-tW4"/>
                         <outlet property="lineChartView" destination="9ro-ab-AVX" id="ZfS-bM-nqp"/>
                         <outlet property="lowFilterRadioButton" destination="qfJ-h3-UMT" id="vUG-TT-v5L"/>
+                        <outlet property="lowerBoundTextField" destination="WNH-Na-zy4" id="LVl-tB-tDe"/>
                         <outlet property="polyharmonicSignalRadioButton" destination="SUN-gU-68W" id="Jw6-QJ-KEy"/>
                         <outlet property="segmentControl" destination="I6U-2q-gIN" id="VP5-6r-X2M"/>
                         <outlet property="shouldUseFilterRadioButton" destination="VHf-30-UmQ" id="4B3-Ya-XaP"/>
                         <outlet property="shouldUsePhaseRadioButton" destination="xk5-4W-Ka0" id="gyn-cA-dFD"/>
+                        <outlet property="signLabel" destination="SuS-6b-N3T" id="APe-dZ-4LY"/>
                         <outlet property="signalRadioButton" destination="naE-hT-rAY" id="ZLi-bm-Mba"/>
+                        <outlet property="upperBoundTextField" destination="IdL-7j-q0a" id="Ejk-jY-4yw"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
